@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peugeot 508 Configurator</title>
+    <style>
+        /* CSS стили */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        header {
+            background: #005baa;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .option-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        button {
+            background: #005baa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background: #003d7a;
+        }
+        
+        .summary {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .pros-cons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .pros, .cons {
+            width: 48%;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .pros {
+            background: #e8f5e9;
+        }
+        
+        .cons {
+            background: #ffebee;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Конфигуратор Peugeot 508 (2012)</h1>
+    </header>
+
+    <div class="container">
+        <!-- Главная страница -->
+        <div id="main-page">
+            <h2>Выберите комплектацию вашего Peugeot 508</h2>
+            <p>Peugeot 508 2012 года - это стильный французский седан/универсал с комфортным салоном и хорошей динамикой.</p>
+            
+            <div class="option-section">
+                <h3>Тип кузова</h3>
+                <select id="body-type">
+                    <option value="sedan">Седан</option>
+                    <option value="wagon">Универсал (SW)</option>
+                </select>
+                <p id="body-description">Седан: элегантный внешний вид, объем багажника 475л. Универсал: практичность, объем багажника 560л (1598л со сложенными сиденьями).</p>
+            </div>
+            
+            <div class="option-section">
+                <h3>Двигатель</h3>
+                <select id="engine">
+                    <option value="1.6-thp">1.6 THP (156 л.с.)</option>
+                    <option value="2.0-hdi">2.0 HDi (140 л.с.)</option>
+                    <option value="2.2-hdi">2.2 HDi (204 л.с.)</option>
+                </select>
+                <p id="engine-description">1.6 THP: бензин, динамичный разгон. 2.0 HDi: дизель, экономичный. 2.2 HDi: мощный дизель с отличной тягой.</p>
+            </div>
+            
+            <div class="option-section">
+                <h3>Комплектация</h3>
+                <select id="trim">
+                    <option value="access">Access</option>
+                    <option value="active">Active</option>
+                    <option value="allure">Allure</option>
+                    <option value="gt">GT</option>
+                </select>
+                <p id="trim-description">Access: базовая. Active: климат-контроль, легкосплавные диски. Allure: кожаный салон, биксенон. GT: полный пакет опций, спортивный обвес.</p>
+            </div>
+            
+            <div class="option-section">
+                <h3>Трансмиссия</h3>
+                <select id="transmission">
+                    <option value="manual">Механическая</option>
+                    <option value="auto">Автоматическая</option>
+                </select>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Плюсы Peugeot 508</h3>
+                    <ul>
+                        <li>Стильный дизайн</li>
+                        <li>Комфортный салон</li>
+                        <li>Хорошая шумоизоляция</li>
+                        <li>Экономичные дизельные двигатели</li>
+                        <li>Управляемость</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h3>Минусы Peugeot 508</h3>
+                    <ul>
+                        <li>Дорогое обслуживание</li>
+                        <li>Проблемы с электроникой в некоторых экземплярах</li>
+                        <li>Жестковатая подвеска</li>
+                        <li>Малый клиренс</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button onclick="showSummary()">Показать мою комплектацию</button>
+            <button onclick="showGallery()">Галерея</button>
+            <button onclick="showContacts()">Контакты</button>
+        </div>
+        
+        <!-- Страница с итогами выбора -->
+        <div id="summary-page" class="hidden">
+            <h2>Ваша выбранная комплектация</h2>
+            <div class="summary" id="configuration-summary">
+                <!-- Сюда будет вставлена информация о выборе -->
+            </div>
+            <button onclick="goBack()">Вернуться к выбору</button>
+        </div>
+        
+        <!-- Галерея -->
+        <div id="gallery-page" class="hidden">
+            <h2>Галерея Peugeot 508</h2>
+            <div id="gallery-images">
+                <p>Седан: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Peugeot_508_GT_HDi_240_%E2%80%93_Frontansicht%2C_3._Juni_2011%2C_D%C3%BCsseldorf.jpg/800px-Peugeot_508_GT_HDi_240_%E2%80%93_Frontansicht%2C_3._Juni_2011%2C_D%C3%BCsseldorf.jpg" alt="Peugeot 508 седан" width="100%"></p>
+                <p>Универсал: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Peugeot_508_SW_HDi_%E2%80%93_Frontansicht%2C_3._Juni_2011%2C_D%C3%BCsseldorf.jpg/800px-Peugeot_508_SW_HDi_%E2%80%93_Frontansicht%2C_3._Juni_2011%2C_D%C3%BCsseldorf.jpg" alt="Peugeot 508 SW" width="100%"></p>
+            </div>
+            <button onclick="goBack()">Вернуться к выбору</button>
+        </div>
+        
+        <!-- Контакты -->
+        <div id="contacts-page" class="hidden">
+            <h2>Контакты</h2>
+            <p>Если у вас есть вопросы по выбору Peugeot 508, свяжитесь с нами:</p>
+            <p>Email: bogdankir@gmail.com</p>
+            <p>Телефон: +7 (901)170 85 22</p>
+            <button onclick="goBack()">Вернуться к выбору</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript функции
+        function showSummary() {
+            // Собираем данные о выборе
+            const bodyType = document.getElementById('body-type').value;
+            const engine = document.getElementById('engine').value;
+            const trim = document.getElementById('trim').value;
+            const transmission = document.getElementById('transmission').value;
+            
+            // Преобразуем значения в читаемый вид
+            const bodyTypeText = bodyType === 'sedan' ? 'Седан' : 'Универсал (SW)';
+            
+            let engineText = '';
+            if (engine === '1.6-thp') engineText = '1.6 THP (156 л.с., бензин)';
+            else if (engine === '2.0-hdi') engineText = '2.0 HDi (140 л.с., дизель)';
+            else if (engine === '2.2-hdi') engineText = '2.2 HDi (204 л.с., дизель)';
+            
+            let trimText = '';
+            if (trim === 'access') trimText = 'Access (базовая)';
+            else if (trim === 'active') trimText = 'Active (средняя)';
+            else if (trim === 'allure') trimText = 'Allure (богатая)';
+            else if (trim === 'gt') trimText = 'GT (топовая)';
+            
+            const transmissionText = transmission === 'manual' ? 'Механическая' : 'Автоматическая';
+            
+            // Формируем HTML для отображения
+            const summaryHTML = `
+                <p><strong>Тип кузова:</strong> ${bodyTypeText}</p>
+                <p><strong>Двигатель:</strong> ${engineText}</p>
+                <p><strong>Комплектация:</strong> ${trimText}</p>
+                <p><strong>Трансмиссия:</strong> ${transmissionText}</p>
+                <h3>Рекомендация:</h3>
+                <p>${getRecommendation(bodyType, engine, trim, transmission)}</p>
+            `;
+            
+            // Вставляем HTML в блок summary
+            document.getElementById('configuration-summary').innerHTML = summaryHTML;
+            
+            // Показываем страницу с итогами
+            document.getElementById('main-page').classList.add('hidden');
+            document.getElementById('summary-page').classList.remove('hidden');
+        }
+        
+        function getRecommendation(bodyType, engine, trim, transmission) {
+            let recommendation = '';
+            
+            if (engine === '1.6-thp' && transmission === 'auto') {
+                recommendation = 'Обратите внимание, что автоматическая коробка с двигателем 1.6 THP может быть менее надежной, чем механическая.';
+            } else if (engine === '2.2-hdi' && trim !== 'gt') {
+                recommendation = 'Мощный 2.2 HDI лучше всего раскрывается в комплектации GT с улучшенной подвеской.';
+            } else if (bodyType === 'wagon' && trim === 'access') {
+                recommendation = 'Универсал в базовой комплектации может не иметь складывающихся сидений - уточните этот момент у дилера.';
+            } else {
+                recommendation = 'Отличный выбор! Эта комбинация оптимальна по соотношению цена/качество.';
+            }
+            
+            return recommendation;
+        }
+        
+        function showGallery() {
+            document.getElementById('main-page').classList.add('hidden');
+            document.getElementById('gallery-page').classList.remove('hidden');
+        }
+        
+        function showContacts() {
+            document.getElementById('main-page').classList.add('hidden');
+            document.getElementById('contacts-page').classList.remove('hidden');
+        }
+        
+        function goBack() {
+            // Скрываем все страницы кроме главной
+            document.getElementById('summary-page').classList.add('hidden');
+            document.getElementById('gallery-page').classList.add('hidden');
+            document.getElementById('contacts-page').classList.add('hidden');
+            
+            // Показываем главную страницу
+            document.getElementById('main-page').classList.remove('hidden');
+        }
+        
+        // Обновляем описания при изменении выбора
+        document.getElementById('body-type').addEventListener('change', function() {
+            const description = this.value === 'sedan' 
+                ? 'Седан: элегантный внешний вид, объем багажника 475л.' 
+                : 'Универсал: практичность, объем багажника 560л (1598л со сложенными сиденьями).';
+            document.getElementById('body-description').textContent = description;
+        });
+        
+        document.getElementById('engine').addEventListener('change', function() {
+            let description = '';
+            if (this.value === '1.6-thp') {
+                description = '1.6 THP: бензиновый турбодвигатель, динамичный разгон (0-100 за 8.5с), расход 7.5л/100км. Требует качественного обслуживания.';
+            } else if (this.value === '2.0-hdi') {
+                description = '2.0 HDi: дизельный двигатель, экономичный (5.5л/100км), надежный, но менее динамичный (0-100 за 10.2с).';
+            } else if (this.value === '2.2-hdi') {
+                description = '2.2 HDi: мощный дизель с отличной тягой (0-100 за 8.2с), расход 6.2л/100км. Рекомендуется для любителей динамичной езды.';
+            }
+            document.getElementById('engine-description').textContent = description;
+        });
+        
+        document.getElementById('trim').addEventListener('change', function() {
+            let description = '';
+            if (this.value === 'access') {
+                description = 'Access: базовая комплектация - кондиционер, электростеклоподъемники, ABS, ESP.';
+            } else if (this.value === 'active') {
+                description = 'Active: климат-контроль, легкосплавные диски 17", парктроник, круиз-контроль.';
+            } else if (this.value === 'allure') {
+                description = 'Allure: кожаный салон, биксеноновые фары, камера заднего вида, датчик дождя.';
+            } else if (this.value === 'gt') {
+                description = 'GT: полный пакет опций, спортивный обвес, массажные сиденья, JBL аудиосистема, 18" диски.';
+            }
+            document.getElementById('trim-description').textContent = description;
+        });
+    </script>
+</body>
+</html>
